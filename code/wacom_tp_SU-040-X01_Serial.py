@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-
-## For WACOM DIGITIZER UNIT SU-040-X01 (Wacom Protocol IV Serial Edition) ##
+## For WACOM DIGITIZER UNIT SU-040-X01 (wich used in ThinkPad X60/X61 Tablet) ##
 
 import serial
 import evdev
