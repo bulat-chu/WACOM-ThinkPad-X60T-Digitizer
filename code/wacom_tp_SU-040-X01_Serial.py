@@ -40,15 +40,11 @@ def create_uinput():
 def parse_wacom4_7byte(packet):
     header = packet[0]
     
-    # Сборка 15-битных координат из двух 7-битных половин
     x = (packet[1] << 7) | packet[2]
     y = (packet[3] << 7) | packet[4]
     
-    # Давление находится в 5-м байте (индекс 5)
-    pressure = packet[5]
+    pressure = ((packet[6] & 0x01) << 7) | packet[5]
 
-    # Анализ состояния на основе ваших логов
-    # a0 - hover, a1 - touch, a2 - button, a3 - touch+button, a4 - eraser
     is_eraser = (header == 0xa4)
     tip = header in [0xa1, 0xa3, 0xa4]
     side_button = header in [0xa2, 0xa3]
