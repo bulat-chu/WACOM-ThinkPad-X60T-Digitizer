@@ -1,6 +1,6 @@
 // =============================================================================
 //  WACOM ISDV4 → USB HID Digitizer для ESP32-S3 SuperMini
-//  Датчик: WACOM DIGITIZER UNIT SU-1208E-01X (ThinkPad X6x Tablet)
+//  Панель: WACOM DIGITIZER UNIT SU-1208E-01X (ThinkPad X6x Tablet)
 // =============================================================================
 //
 //  ПОДКЛЮЧЕНИЕ (всё напрямую):
