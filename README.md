@@ -1,60 +1,12 @@
 # WACOM-ThinkPad-X60T-Digitizer
 
-It works!  [Youtube link](https://youtu.be/RoAJn2lIkPo)
-
-
 This project is an unofficial interoperability implementation for legacy ISDV4-compatible EMR panel.
-
 Wacom is a trademark of Wacom Co., Ltd.
 
-## Hardware part.
-
-### What you need:
-- USB <-> UART converter, wich support 3.3V (I used CH343);
-- Wires or connector with wires;
-- Digitizer module with coil array (I used SU-1208E-01X).
-
-### How co connect:
-1. All connecions on connector CN1.
-```
-Pin 14 - GND
-Pin 13 - 3.3V
-Pin 10 - UART TX
-Pin 9 - UART RX
-```
-![](https://github.com/bulat-ch/WACOM-ThinkPad-X60T-Digitizer/blob/main/images/IMG_20260514_140713_1.jpg)
-
-2. Disconnect or cut UART lines from chip of resistive touchpanel (or just desolder GUNZE AHL-71N chip), because it can cause bug with teleporting cursor even it set up properly:
-![](https://github.com/bulat-ch/WACOM-ThinkPad-X60T-Digitizer/blob/main/images/IMG_20260514_140700_1.jpg)
-
-It's all.
-
-Thanks for ```Mystic-X``` from [thinkpad-forum.de](https://thinkpad-forum.de/threads/wacom-digitizer-aus-x6-tablet-etwas-analysiert.159569/) and [linuxwacom documentation of ISDV4 Protocol](https://github.com/linuxwacom/input-wacom/wiki/For-Developers:-ISDV4-Protocol)! 
 
 
-## OS part.
+It works! [Youtube link](https://youtu.be/RoAJn2lIkPo)
 
-Dependencies (for ArchLinux): ```python-pyserial``` and ```python-evdev```
-```
-sudo pacman -S python-pyserial python-evdev
-```
-Load ```uinput``` module:
-```
-sudo modprobe uinput
-```
-
-Add yourself to ```uucp``` group:
-```
-sudo usermod -aG uucp $USER
-```
-And run (check rights if couldn't execute):
-```
-sudo python ./wacom_tp_SU-1208E-01X_Serial.py
-```
-
-
-
-
-TO DO:
-1. Connect to USB using ESP32-S3 Supermini (?)
-2. Check (and adopt?) another one type of EMR digitizer what used with 1400x1050 panel.
+I tested SU-1208E-01X and SU-040-X01 digitizers.
+Pinout found here [WebArchive](https://archive.org/details/rf-module-manual-2090026/page/11/mode/1up)
+How to connect and how to run it using USB-UART converter or ESP32 here [SU-1208E-01X](https://github.com/bulat-ch/WACOM-ThinkPad-X60T-Digitizer/blob/main/SU-1208E-01X.md) or here [SU-040-X01](https://github.com/bulat-ch/WACOM-ThinkPad-X60T-Digitizer/blob/main/SU-040-X01.md)
