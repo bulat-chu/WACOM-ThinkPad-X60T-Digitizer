@@ -1,4 +1,4 @@
-# WACOM-ThinkPad-X60T-Digitizer (WIP!)
+# WACOM-ThinkPad-X60T-Digitizer
 
 It works!  [Youtube link](https://youtu.be/RoAJn2lIkPo)
 
@@ -49,7 +49,7 @@ sudo usermod -aG uucp $USER
 ```
 And run (check rights if couldn't execute):
 ```
-sudo python ./wacom_tp_x60t_isdv4.py
+sudo python ./wacom_tp_SU-1208E-01X_Serial.py
 ```
 
 
