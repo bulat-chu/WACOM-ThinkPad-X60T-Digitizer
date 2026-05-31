@@ -15,7 +15,7 @@ WACOM4_PACKET_LEN = 7
 # Координатная сетка
 MAX_X = 6144
 MAX_Y = 4608
-MAX_PRESSURE = 127  # Датчик выдает 7 бит давления
+MAX_PRESSURE = 255  # Датчик выдает 7 бит давления
 
 def open_serial():
     return serial.Serial(port=SERIAL_PORT, baudrate=BAUD_RATE, timeout=0.05)
