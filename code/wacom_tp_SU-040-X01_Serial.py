@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 ## For WACOM DIGITIZER UNIT SU-040-X01 (wich used in ThinkPad X60/X61 Tablet) ##
 
 import serial
@@ -8,13 +9,13 @@ import time
 
 # --- Настройки на основе реальных тестов устройства ---
 SERIAL_PORT = "/dev/ttyACM0"
-BAUD_RATE = 19200  # Ваша проверенная скорость
-WACOM4_PACKET_LEN = 7  # Пакет Wacom IV строго 7 байт
+BAUD_RATE = 19200
+WACOM4_PACKET_LEN = 7
 
-# Координатная сетка (расширена для субпиксельной точности Linux)
+# Координатная сетка
 MAX_X = 6144
 MAX_Y = 4608
-MAX_PRESSURE = 127  # Датчик выдает 7 бит давления (0-127)
+MAX_PRESSURE = 127  # Датчик выдает 7 бит давления
 
 def open_serial():
     return serial.Serial(port=SERIAL_PORT, baudrate=BAUD_RATE, timeout=0.05)
