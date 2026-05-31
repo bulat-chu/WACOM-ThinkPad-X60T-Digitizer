@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-## For WACOM DIGITIZER UNIT SU-1208E-01X (wich used in ThinkPad X60 Tablet) ##
+## For WACOM DIGITIZER UNIT SU-1208E-01X (wich used in ThinkPad X60/X61 Tablet) ##
 
 import serial
 import evdev
