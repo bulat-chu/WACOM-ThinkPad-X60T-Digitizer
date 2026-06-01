@@ -10,10 +10,21 @@ SERIAL_PORT = "/dev/ttyACM0"
 BAUD_RATE = 19200
 WACOM4_PACKET_LEN = 7
 
-# Координатная сетка
 MAX_X = 6144
 MAX_Y = 4608
 MAX_PRESSURE = 255
+
+#  ┌─────────────────────┬───────────────────────┐
+#  │ Датчик (SU-040-X01) │ UART                  │
+#  ├─────────────────────┼───────────────────────┤
+#  │ TX                  │ RX                    │
+#  │ RX                  │ TX                    │
+#  │ GND                 │ GND                   │
+#  │ VCC (3.3В)          │ 3V3                   │
+#  │ RESET               │ NC                    │
+#  │ SLEEP               │ GND via 4.7-10kOhm    │
+#  │ PROXIMITY           │ NC                    │
+#  └─────────────────────┴───────────────────────┘
 
 #  HID REPORT DESCRIPTOR — Digitizer / Stylus
 #
