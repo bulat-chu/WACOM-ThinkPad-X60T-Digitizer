@@ -1,6 +1,6 @@
 # WACOM-ThinkPad-X60T-Digitizer
 
-This project is an unofficial interoperability implementation for legacy ISDV4-compatible EMR panel.
+This project is an unofficial interoperability implementation for legacy ISDV4 or WacomIV -compatible EMR panels.
 Wacom is a trademark of Wacom Co., Ltd.
 
 
