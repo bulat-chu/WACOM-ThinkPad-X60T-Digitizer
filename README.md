@@ -12,4 +12,4 @@ Pinout found here [WebArchive](https://archive.org/details/rf-module-manual-2090
 
 
 
-How to connect and how to run it using USB-UART converter or ESP32 here [SU-1208E-01X](https://github.com/bulat-ch/WACOM-ThinkPad-X60T-Digitizer/blob/main/SU-1208E-01X.md) or here [SU-040-X01](https://github.com/bulat-ch/WACOM-ThinkPad-X60T-Digitizer/blob/main/SU-040-X01.md)
+How to connect and how to run it using USB-UART converter or ESP32 here [SU-1208E-01X](https://github.com/bulat-chu/WACOM-ThinkPad-X60T-Digitizer/blob/main/SU-1208E-01X.md) or here [SU-040-X01](https://github.com/bulat-chu/WACOM-ThinkPad-X60T-Digitizer/blob/main/SU-040-X01.md)
