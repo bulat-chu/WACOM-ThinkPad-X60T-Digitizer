@@ -40,10 +40,14 @@
 #define WACOM4_BAUD       19200
 #define WACOM4_PACKET_LEN 9   // 9 байт (byte7/8 — X/Y tilt, не используются)
 
-// --- Лимиты координат ---
+// --- Лимиты координат (единственный источник правды: дескриптор берёт их отсюда) ---
 #define MAX_X        6576
 #define MAX_Y        4128
 #define MAX_PRESSURE 255
+
+// Разбиение числа на байты для HID-дескриптора (little-endian)
+#define LO8(v) ((v) & 0xFF)
+#define HI8(v) (((v) >> 8) & 0xFF)
 
 // =============================================================================
 //  HID REPORT DESCRIPTOR — Digitizer / Stylus
@@ -52,11 +56,10 @@
 //    bit0 = Tip
 //    bit1 = Side Button 1
 //    bit2 = Side Button 2 / Eraser
-//    bit3 = Reserved         (перо перевёрнуто — ластик в зоне)
-//    bit4 = Reserved
-//    bit5 = Proximity
-//    bit6 = Always 0
-//    bit7 = Always 1
+//    bit3 = Invert           (перо перевёрнуто — ластик в зоне)
+//    bit4 = In Range         (proximity)
+//    bit5 = Tablet Pick (резерв)
+//    bit6-7 = padding
 //  Byte 1-2: X (uint16 LE)
 //  Byte 3-4: Y (uint16 LE)
 //  Byte 5:   Pressure (uint8, 0–255)
@@ -85,8 +88,8 @@ static const uint8_t hid_descriptor[] = {
       0x05, 0x01,
       0x09, 0x30,
       0x15, 0x00,
-      0x27, 0x30, 0x19, 0x00, 0x00,  // max 6576
-      0x47, 0x30, 0x19, 0x00, 0x00,
+      0x26, LO8(MAX_X), HI8(MAX_X),   // Logical Max
+      0x46, LO8(MAX_X), HI8(MAX_X),   // Physical Max
       0x55, 0x0D,
       0x65, 0x11,
       0x75, 0x10,
@@ -95,8 +98,8 @@ static const uint8_t hid_descriptor[] = {
       // Y
       0x09, 0x31,
       0x15, 0x00,
-      0x27, 0x20, 0x10, 0x00, 0x00,  // max 4128
-      0x47, 0x20, 0x10, 0x00, 0x00,
+      0x26, LO8(MAX_Y), HI8(MAX_Y),   // Logical Max
+      0x46, LO8(MAX_Y), HI8(MAX_Y),   // Physical Max
       0x75, 0x10,
       0x95, 0x01,
       0x81, 0x02,
@@ -104,8 +107,8 @@ static const uint8_t hid_descriptor[] = {
       0x05, 0x0D,
       0x09, 0x30,
       0x15, 0x00,
-      0x26, 0xFF, 0x00,
-      0x46, 0xFF, 0x00,
+      0x26, LO8(MAX_PRESSURE), HI8(MAX_PRESSURE),
+      0x46, LO8(MAX_PRESSURE), HI8(MAX_PRESSURE),
       0x75, 0x08,
       0x95, 0x01,
       0x81, 0x02,
@@ -169,7 +172,7 @@ uint8_t active_tool = TOOL_NONE;
 //  byte0: bit7=1(sync) bit6=0(event) bit5=proximity bit2=eraser/side2
 //         bit1=side1 bit0=tip
 //  byte1: X[13:7]                      (все 7 бит)
-//  byte2: биты 2-6 = X[6:2]            (!!! не все 7 бит, как раньше)
+//  byte2: биты 2-6 = X[6:2]
 //  byte3: Y[13:7]
 //  byte4: биты 2-6 = Y[6:2]
 //  byte5: Pressure[6:0]
@@ -249,9 +252,10 @@ void loop() {
           active_tool = pen.is_eraser ? TOOL_ERASER : TOOL_PEN;
         }
 
-        pen_report.x        = pen.x;
-        pen_report.y        = pen.y;
-        pen_report.pressure = (uint8_t)(pen.pressure > 255 ? 255 : pen.pressure);
+        // Ограничиваем значения лимитами дескриптора
+        pen_report.x        = pen.x > MAX_X ? MAX_X : pen.x;
+        pen_report.y        = pen.y > MAX_Y ? MAX_Y : pen.y;
+        pen_report.pressure = (uint8_t)(pen.pressure > MAX_PRESSURE ? MAX_PRESSURE : pen.pressure);
 
         uint8_t btns = (1 << 4);  // In Range всегда при proximity
 
