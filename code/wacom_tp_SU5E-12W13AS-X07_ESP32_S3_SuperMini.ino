@@ -37,7 +37,7 @@
 //  - USB Mode:         "USB-OTG (TinyUSB)"
 //  - USB CDC On Boot:  "Disabled"
 //  - CPU Frequency:    40 MHz
-//  - Плата:            "ESP32S3 Dev Module", в Board Manager "esp32" by Espressif Systems, v2.0.17
+//  - Плата:            "ESP32S3 Dev Module", в Board Manager "esp32" by Espressif Systems, v3.3.12
 //  - Adafruit TinyUSB Library НЕ нужна
 // =============================================================================
 
