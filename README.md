@@ -12,6 +12,6 @@ How to connect and how to run it using USB-UART converter or ESP32 here [SU-1208
 ---
 No description but connections in the firmware file. Pinout all of these panels are same.
 
-[SU-040-X01](https://github.com/bulat-chu/WACOM-ThinkPad-X60T-Digitizer/blob/main/SU-040-X01.md)
+[SU-040-X01](https://github.com/bulat-chu/WACOM-ThinkPad-X60T-Digitizer/blob/main/code/wacom_tp_SU-040-X01_ESP32-S3-SuperMini.ino)
 
 [SU5E-12W13AS-X07](https://github.com/bulat-chu/WACOM-ThinkPad-X60T-Digitizer/blob/main/code/wacom_tp_SU5E-12W13AS-X07_ESP32_S3_SuperMini.ino)
